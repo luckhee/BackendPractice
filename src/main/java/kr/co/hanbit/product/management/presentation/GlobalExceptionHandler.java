@@ -66,7 +66,7 @@ public class GlobalExceptionHandler {
         errors.add(ex.getMessage());
 
         ErrorMessage errorMessage = new ErrorMessage(errors);
-        return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
 
 }
