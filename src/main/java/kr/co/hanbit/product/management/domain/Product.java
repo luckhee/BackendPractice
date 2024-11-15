@@ -32,6 +32,18 @@ public class Product {
         return this.name.contains(name);
     }
 
+    public @Size(min = 1, max = 100) String getName() {
+        return name;
+    }
+
+    public @Max(1_000_000) @Min(0) Integer getPrice() {
+        return price;
+    }
+
+    public @Max(999_999) @Min(0) Integer getAmount() {
+        return amount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
