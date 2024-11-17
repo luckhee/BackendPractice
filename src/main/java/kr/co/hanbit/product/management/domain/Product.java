@@ -9,6 +9,10 @@ import java.util.Objects;
 public class Product {
     private Long id;
 
+    public Long getId() {
+        return id;
+    }
+
     @Size(min = 1, max = 100)
     private String name;
 

@@ -53,19 +53,37 @@ public class DatabaseProductRepository {
     }
 
     public List<Product> findAll() {
-        return Collections.EMPTY_LIST;
+        List<Product> products = namedParameterJdbcTemplate.query(
+                "SELECT * FROM products",
+                new BeanPropertyRowMapper<>(Product.class) // DB데이터를 Java 객체로 변환
+        );
+        return products;
     }
 
     public List<Product> findByNameContaining(String name) {
-        return Collections.EMPTY_LIST;
+        SqlParameterSource namedParameter = new MapSqlParameterSource("name", "%" +name +"%");
+
+        List<Product> products = namedParameterJdbcTemplate.query(
+                "SELECT * FROM products WHERE name LIKE :name",
+                namedParameter,
+                new BeanPropertyRowMapper<>(Product.class)
+        );
+        return products;
     }
 
     public Product update(Product product) {
-        return null;
+        SqlParameterSource namedParameter = new BeanPropertySqlParameterSource(product);
+
+        namedParameterJdbcTemplate.update("UPDATE products SET name = :name, price = :price, amount = :amount WHERE id = :id",
+                namedParameter);
+
+        return product;
     }
 
     public void delete(Long id) {
+        SqlParameterSource namedParameter = new MapSqlParameterSource("id", id);
 
+        namedParameterJdbcTemplate.update("DELETE FROM products WHERE id = :id", namedParameter);
     }
 
 }
