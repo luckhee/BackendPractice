@@ -16,6 +16,18 @@ public class Product {
     @Min(0)
     private Integer price;
 
+    public void setName(@Size(min = 1, max = 100) String name) {
+        this.name = name;
+    }
+
+    public void setPrice(@Max(1_000_000) @Min(0) Integer price) {
+        this.price = price;
+    }
+
+    public void setAmount(@Max(999_999) @Min(0) Integer amount) {
+        this.amount = amount;
+    }
+
     @Max(999_999)
     @Min(0)
     private Integer amount;
