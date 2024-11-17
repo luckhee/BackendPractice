@@ -28,7 +28,7 @@ public class DatabaseProductRepository {
 
     public Product add(Product product) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        SqlParameterSource namedParameter = new BeanPropertySqlParameterSource(product);
+        SqlParameterSource namedParameter = new BeanPropertySqlParameterSource(product); // BeanPropertySqlParameterSource는 Product의 getter를 통해 SQL쿼리의 매개변수를 매핑 시켜 주는 객채
 
         namedParameterJdbcTemplate.update("INSERT INTO products (name, price, amount) VALUES (:name, :price, :amount)", namedParameter, keyHolder);
 
