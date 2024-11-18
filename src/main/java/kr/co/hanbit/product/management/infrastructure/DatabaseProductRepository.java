@@ -1,7 +1,9 @@
 package kr.co.hanbit.product.management.infrastructure;
 
 import kr.co.hanbit.product.management.domain.Product;
+import kr.co.hanbit.product.management.domain.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -17,8 +19,9 @@ import java.util.List;
 
 import static com.fasterxml.jackson.databind.type.LogicalType.Collection;
 
+@Profile("Prod")
 @Repository
-public class DatabaseProductRepository {
+public class DatabaseProductRepository implements ProductRepository {
 
 //    private JdbcTemplate jdbcTemplate;
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
